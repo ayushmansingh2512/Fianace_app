@@ -4,10 +4,11 @@ import ReactMarkdown from 'react-markdown';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const quickPrompts = [
-    "Analyze my budget",
-    "Current Market Update",
-    "How to save for a house?",
-    "Log a $50 grocery expense"
+    "Analyze my budget in ₹",
+    "Best SIP to start in India?",
+    "How to save ₹10L for a house?",
+    "Nifty 50 vs FD — which is better?",
+    "How to save tax under 80C?"
 ];
 
 const Chat = () => {
