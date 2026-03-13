@@ -51,7 +51,7 @@ function App() {
           <div style={{ textAlign: 'center', padding: '5rem' }}>Loading your financial data...</div>
         ) : (
           <>
-            {activeTab === 'dashboard' && <Dashboard data={dashboardData} />}
+            {activeTab === 'dashboard' && <Dashboard data={dashboardData} setActiveTab={setActiveTab} />}
             {activeTab === 'chat' && <Chat />}
           </>
         )}

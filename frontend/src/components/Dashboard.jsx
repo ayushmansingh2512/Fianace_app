@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { IndianRupee, Home, CreditCard, PiggyBank, AlertTriangle, Save, Check, MapPin, Trash2 } from 'lucide-react';
 
-const Dashboard = () => {
+const Dashboard = ({ setActiveTab }) => {
     // State for user financial context
     const [formData, setFormData] = useState({
         salary: '',
@@ -39,6 +39,10 @@ const Dashboard = () => {
     const handleSave = () => {
         localStorage.setItem('finance_ai_context', JSON.stringify(formData));
         setSaved(true);
+        // Redirect to AI Advisor after saving
+        if (setActiveTab) {
+            setActiveTab('chat');
+        }
         setTimeout(() => setSaved(false), 3000);
     };
 
@@ -243,33 +247,7 @@ const Dashboard = () => {
                 <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '1rem', borderTop: '1px solid #333', paddingTop: '1.5rem' }}>
                     {saved && <span style={{ color: '#4ade80', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem' }}><Check size={16} /> Saved to Cache</span>}
 
-                    <button
-                        onClick={handleClear}
-                        style={{
-                            background: 'transparent',
-                            color: '#888',
-                            border: '1px solid #444',
-                            padding: '0.8rem 1.5rem',
-                            borderRadius: '8px',
-                            fontWeight: '600',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.5rem',
-                            cursor: 'pointer',
-                            transition: 'all 0.2s'
-                        }}
-                        onMouseEnter={(e) => {
-                            e.currentTarget.style.color = '#ef4444';
-                            e.currentTarget.style.borderColor = '#ef4444';
-                        }}
-                        onMouseLeave={(e) => {
-                            e.currentTarget.style.color = '#888';
-                            e.currentTarget.style.borderColor = '#444';
-                        }}
-                    >
-                        <Trash2 size={18} />
-                        Clear Cache
-                    </button>
+
 
                     <button
                         onClick={handleSave}
