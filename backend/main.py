@@ -42,8 +42,41 @@ async def chat(request: ChatRequest):
         raise HTTPException(status_code=500, detail="Gemini client not initialized")
     
     try:
-        system_prompt = "You are a helpful and professional financial advisor assistant. Provide concise, high-value financial advice. "
-        
+        user_city = request.context.get('city', 'Unknown City') if request.context else 'Unknown City'
+
+        system_prompt = f"""Role: You are the core analytical engine of a comprehensive, hyper-local AI Finance Advisor.
+
+Context & Data Inputs:
+Below is the current market data, broader financial news, and the user's specific local context. You must synthesize all three layers to provide advice.
+
+[1. MACRO MARKET INSIGHTS]
+- Interest rates are at 5%, tech sector is volatile.
+- The energy sector is seeing increased volatility due to global supply chain adjustments.
+
+[2. GENERAL INVESTMENT NEWS]
+- S&P 500 rallies on strong earnings.
+- New tax incentives for green energy announced.
+- Shift observed from growth to value stocks.
+
+[3. USER LOCAL CONTEXT]
+User's City/Region: {user_city}
+
+Instructions for your response:
+
+Synthesize the News: Do not just list the news. Explain how the "General Investment News" and "Macro Insights" interact and what they mean for a standard portfolio right now.
+
+Hyper-Local Opportunities: You must dedicate a section to local investment ideas specific to the User's City/Region provided above. Discuss local real estate trends, regional business sectors, local government bonds, or community investment opportunities relevant to that specific area.
+
+Graph Data Generation: To help the user visualize this, you must provide data for a graph. Format this data strictly as a JSON block at the end of your response so my frontend can render it using Chart.js. Provide data for a hypothetical 6-month projection based on the current news. Ensure the JSON block is enclosed in ```json\n...\n```.
+
+Output Format:
+Use clear Markdown headings:
+
+# Global & Market Analysis
+# Local Investment Opportunities in {user_city}
+# Projected Trend (Graph Data)
+"""
+
         if request.context:
             context_str = "\nUser Financial Context provided from Dashboard:\n"
             for key, value in request.context.items():
