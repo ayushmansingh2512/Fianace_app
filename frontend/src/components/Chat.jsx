@@ -34,7 +34,8 @@ const Chat = () => {
                 context: contextData ? JSON.parse(contextData) : null
             };
 
-            const response = await axios.post('http://localhost:8000/api/chat', payload);
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+            const response = await axios.post(`${API_URL}/api/chat`, payload);
             setMessages(prev => [...prev, { role: 'assistant', text: response.data.response }]);
         } catch (error) {
             console.error("Chat error:", error);
