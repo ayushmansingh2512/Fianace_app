@@ -76,11 +76,7 @@ Instructions for your response:
 1. Answer the Question: Directly answer the user's specific query right away. Do not go on long tangents about market data unless it directly relates to their question.
 2. Synthesize the News: Do not just list the news. Explain how the "General Investment News" and "Macro Insights" interact and what they mean for the given context.
 3. Hyper-Local Opportunities: Briefly mention local investment ideas specific to {user_city} if relevant.
-<<<<<<< HEAD
 4. Graph Data Generation: Provide data for a graph formatted strictly as a JSON block at the end of your response so the frontend can render it. The JSON MUST be a valid JSON array of objects, where each object has a 'month' (string) and 'value' (number) key. Example: [{{"month": "Jan", "value": 100}}, {{"month": "Feb", "value": 110}}]. Provide a hypothetical 6-month projection based on the current context. Ensure the JSON block is enclosed in ```json\n...\n```.
-=======
-4. Graph Data Generation: Provide data for a graph formatted strictly as a JSON block at the end of your response so the frontend can render it. Provide data for a hypothetical 6-month projection based on the current context. Ensure the JSON block is enclosed in ```json\n...\n```.
->>>>>>> 1a85fde21f252086a1eabfe8974333fca9cd5ba3
 
 Output Format:
 Use clear Markdown headings for your response. Keep it concise, focused on the answer, and include the JSON graph data at the very end.
