@@ -38,8 +38,6 @@ function App() {
       display: 'flex',
       flexDirection: 'column',
       minHeight: '100vh',
-      height: activeTab === 'chat' ? '100vh' : 'auto',
-      overflow: activeTab === 'chat' ? 'hidden' : 'auto'
     }}>
       <Navbar onProfileClick={() => setShowProfileModal(true)} />
 
@@ -47,7 +45,6 @@ function App() {
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
-        minHeight: 0 // critical for flex children to allow inner scrolling
       }}>
         <div style={{
           display: 'flex',
